@@ -3,7 +3,7 @@
 FROM node:14 as build-stage
 #
 
-MAINTAINER GeekBrains <support@geekbrains.ru>
+MAINTAINER MarinaShavyrina
 USER root
 
 ENV APPLICATION_NAME=gb-demo-app
@@ -33,3 +33,4 @@ EXPOSE 3001
 
 # Run with --restart=on-failure
 CMD ["./start.sh"]
+# CMD ["/usr/bin/env", "sh"]
