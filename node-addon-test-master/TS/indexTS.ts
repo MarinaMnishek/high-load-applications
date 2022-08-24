@@ -1,7 +1,18 @@
-const groupBy = require('./group-by');
-const NativeNapi = require('./addons/native_napi');
+const groupBy = require('./group-by-TS.js')
+const NativeNapi = require('../addons/native_napi');
 
-function generateData(amount) {
+interface Group {
+    id: number,
+    group: string,
+    string: string,
+    number: number,
+    number2: number,
+    null: null,
+    undefined: undefined,
+    boolean: boolean
+}
+
+function generateData(amount:number): Array<Group> {
     return Array.from({length: amount}, (v, i) => {
         return {
             id: i,
@@ -28,7 +39,9 @@ let grouped;
  */
 console.log('\n# JavaScript')
 console.time('Duration')
+// grouped = groupByTS(data, 'group', ['number', 'number2'])
 grouped = groupBy(data, 'group', ['number', 'number2'])
+
 console.timeEnd('Duration')
 
 /**
@@ -43,7 +56,7 @@ console.timeEnd('Duration')
 /**
  * WebAssembly Embind
 //  */
-        // var EmbindModule = require('./addons/webassembly-embind/group_by.js');
+        // var EmbindModule = require('../addons/webassembly-embind/group_by.js');
 
         // EmbindModule['onRuntimeInitialized'] = function(a) {
         //     console.log('\n# WebAssembly with Embind binding')
@@ -56,7 +69,7 @@ console.timeEnd('Duration')
 /**
  * WebAssembly WebIdl (WIP)
  */
-        var WebidlModule = require('./addons/webassembly-webidl/group_by.js');
+        var WebidlModule = require('../addons/webassembly-webidl/group_by.js');
 
         WebidlModule['onRuntimeInitialized'] = function(a) {
             console.log('\n# WebAssembly with WebIDL binding')

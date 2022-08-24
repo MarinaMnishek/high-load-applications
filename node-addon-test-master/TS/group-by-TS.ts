@@ -43,9 +43,24 @@
  * @returns Array<any>
  */
 
+//  "type": "module",
+interface GroupBy {
+    items: Array<string>,
+    groupField: string,
+    groupValue: string,
+    id: number,
+    group: string,
+    string: string,
+    number: number,
+    number2: number,
+    null: null,
+    undefined: undefined,
+    boolean: boolean
+}
 
-function groupBy(items, field, sumFields = []) {
-    const groupsMap = {};
+
+ function groupByTS(items:Array<any>, field:string, sumFields:Array<string> = []):Array<GroupBy> {
+    const groupsMap:GroupBy | any = {};
 
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
@@ -77,4 +92,4 @@ function groupBy(items, field, sumFields = []) {
     return Object.keys(groupsMap).map(key => groupsMap[key]);
 }
 
-module.exports = groupBy;
+module.exports = groupByTS;
