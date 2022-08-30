@@ -1,0 +1,51 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "native_napi", "native_napi.vcxproj", "{66CD0002-05FB-6561-3C03-4AAE73CAE1F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3} = {01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nothing", "..\node_modules\node-addon-api\nothing.vcxproj", "{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(WEB)", "..\WEB", "{9EDC80A0-7987-5375-6F1E-33C41EBE13AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(GeekBrains)", "..\WEB\GeekBrains", "{DFDA4F22-F8DB-EAA4-38C9-559BEB3D0D49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений)", "..\WEB\GeekBrains\Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений", "{E18DE547-D45C-7302-9083-2BB2F0E86CAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(dz)", "..\WEB\GeekBrains\Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений\dz", "{D73519FD-49F6-D7C1-64AE-BE95018C13D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(node-addon-test-master)", "..\WEB\GeekBrains\Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений\dz\node-addon-test-master", "{5F5AEFF5-A60C-9E98-BD02-2B2F3FA8EFEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(node_modules)", "..\WEB\GeekBrains\Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений\dz\node-addon-test-master\node_modules", "{DCAB2777-29E0-0A33-DBB3-A8DE7EECA48B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "(node-addon-api)", "..\WEB\GeekBrains\Четверть_4_2_Разработка высоконагруженных бэкэнд-приложений\dz\node-addon-test-master\node_modules\node-addon-api", "{4DAB4C46-BC6A-D46F-54EF-C1DB62ABD973}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}.Release|x64.ActiveCfg = Release|x64
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}.Release|x64.Build.0 = Release|x64
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}.Debug|x64.ActiveCfg = Debug|x64
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3}.Debug|x64.Build.0 = Debug|x64
+		{66CD0002-05FB-6561-3C03-4AAE73CAE1F2}.Release|x64.ActiveCfg = Release|x64
+		{66CD0002-05FB-6561-3C03-4AAE73CAE1F2}.Release|x64.Build.0 = Release|x64
+		{66CD0002-05FB-6561-3C03-4AAE73CAE1F2}.Debug|x64.ActiveCfg = Debug|x64
+		{66CD0002-05FB-6561-3C03-4AAE73CAE1F2}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFDA4F22-F8DB-EAA4-38C9-559BEB3D0D49} = {9EDC80A0-7987-5375-6F1E-33C41EBE13AB}
+		{E18DE547-D45C-7302-9083-2BB2F0E86CAB} = {DFDA4F22-F8DB-EAA4-38C9-559BEB3D0D49}
+		{D73519FD-49F6-D7C1-64AE-BE95018C13D0} = {E18DE547-D45C-7302-9083-2BB2F0E86CAB}
+		{5F5AEFF5-A60C-9E98-BD02-2B2F3FA8EFEE} = {D73519FD-49F6-D7C1-64AE-BE95018C13D0}
+		{DCAB2777-29E0-0A33-DBB3-A8DE7EECA48B} = {5F5AEFF5-A60C-9E98-BD02-2B2F3FA8EFEE}
+		{4DAB4C46-BC6A-D46F-54EF-C1DB62ABD973} = {DCAB2777-29E0-0A33-DBB3-A8DE7EECA48B}
+		{01596964-F1B7-ADD2-EBCC-BCAAF5B651C3} = {4DAB4C46-BC6A-D46F-54EF-C1DB62ABD973}
+	EndGlobalSection
+EndGlobal
