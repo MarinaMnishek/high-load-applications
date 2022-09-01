@@ -19,7 +19,7 @@ export class NewsController {
   @Get()
   async getNews() {
     const exists = await redis.exists("newsCache.0");
-    
+
     if (exists !== 1) {
 
       const news = Object.keys([...Array(5)])
@@ -44,6 +44,24 @@ export class NewsController {
       }
       return await newsCache;
     }
+
+  }
+
+  @Get('score')
+  async getScore() {
+await redis.del("authorScore")
+    const authors = Object.keys([...Array(15)])
+      .map(key => Number(key) + 1)
+      .map(n => ({
+        name: (rand => ([...Array(rand(5))].map(() => rand(10 ** 16).toString(36).substring(rand(10))).join(' ')))(max => Math.ceil(Math.random() * max)),
+        score: Math.floor(Math.random() * 100) + 1
+      }))
+
+    console.log('authors', authors);
+    await redis.zadd('authorScore', ...authors.map(({ name, score }) => [score, name]))
+     console.log(await redis.zrevrange("authorScore", 0, 9, "WITHSCORES")); 
+    return await redis.zrevrange("authorScore", 0, 9, "WITHSCORES")
+   
 
   }
 
