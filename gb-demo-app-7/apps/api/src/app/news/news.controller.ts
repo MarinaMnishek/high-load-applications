@@ -1,9 +1,8 @@
 import { Body, Controller, Get, Header, Post, Param } from '@nestjs/common';
 import { IsNotEmpty } from 'class-validator';
-import memjs from 'memjs';
 import Redis from 'ioredis';
 
-const memcached = memjs.Client.create();
+
 const redis = new Redis();
 
 export class CreateNewsDto {
@@ -16,22 +15,36 @@ export class CreateNewsDto {
 
 @Controller('news')
 export class NewsController {
+
   @Get()
   async getNews() {
-    return new Promise(resolve => {
-      const news = Object.keys([...Array(20)])
+    const exists = await redis.exists("newsCache.0");
+    
+    if (exists !== 1) {
+
+      const news = Object.keys([...Array(5)])
         .map(key => Number(key) + 1)
         .map(n => ({
           id: n,
           title: `Важная новость ${n}`,
-          description: (rand => ([...Array(rand(1000))].map(() => rand(10**16).toString(36).substring(rand(10))).join(' ')))(max => Math.ceil(Math.random() * max)),
+          description: (rand => ([...Array(rand(1000))].map(() => rand(10 ** 16).toString(36).substring(rand(10))).join(' ')))(max => Math.ceil(Math.random() * max)),
           createdAt: Date.now()
         }))
 
-      setTimeout(() => {
-        resolve(news);
-      }, 100)
-    });
+      for (let i = 0; i < news.length; i++) {
+        await redis.hmset("newsCache." + i, news[i])
+        await redis.expire("newsCache." + i, 15)
+      }
+      return news
+    } else {
+
+      const newsCache = [];
+      for (let i = 0; i < 5; i++) {
+        newsCache.push(await redis.hgetall("newsCache." + i))
+      }
+      return await newsCache;
+    }
+
   }
 
   @Post()
@@ -43,13 +56,6 @@ export class NewsController {
         resolve({ id: Math.ceil(Math.random() * 1000), ...peaceOfNews });
       }, 100)
     });
-  }
-
-  @Get('test-memcached/:searchtext')
-  async testMemcached(@Param('searchtext') searchtext: string) {
-    memcached.set("foo", searchtext, 10);
-
-    return await memcached.get("foo").then(a => a.value.toString());
   }
 
   @Get('test-redis/:searchtext')
